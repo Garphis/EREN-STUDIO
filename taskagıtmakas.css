@@ -1,0 +1,94 @@
+body{
+    background-color: black;
+}
+
+.buttons{
+    display: grid;
+    grid-template-columns: 150px 150px 150px;
+    grid-column-gap: 20px;
+    height: 150px;
+    justify-content: center;
+}
+
+.button{
+    border-radius: 100px;
+    background-color: gray;
+    font-family: arial,roboto;
+    font-weight: bold;
+    font-size: 20px;
+    transition: all 0.15s;
+    cursor: pointer;
+    border: none;
+}
+
+.button:hover{
+    opacity: 0.8;
+}
+
+.button:active{
+    background-color: rgb(155, 155, 155);
+}
+
+.texts{
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+    grid-column-gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+}
+.oyuncu{
+    color: white;
+    margin: 0;
+}
+.bilgisayar{
+    color: white;
+    margin: 0;
+}
+.kazanan{
+    color: white;
+    margin: 0;
+}
+
+.win{
+    color: white;
+}
+.lose{
+    color: white;
+}
+.tie{
+    color: white;
+}
+
+.scoretext{
+    display: inline-block;
+    width: 200px;
+    vertical-align: middle;
+    margin-top: 40px;
+}
+
+.reset{
+    width: 100px;
+    height: 100px;
+    vertical-align: middle;
+    margin-top: 40px;
+    float: right;
+    margin-right: 40px;
+    border-radius: 6px;
+    border: none;
+    background-color: blue;
+    color: wheat;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.reset:hover{
+    width: 108px;
+    height: 108px;
+    margin-right: 36px;
+    margin-top: 36px;
+}
+
+.reset:active{
+    opacity: 0.9;
+    background-color: rgb(4, 4, 152);
+}
