@@ -3,7 +3,7 @@ const flipcard = new Audio("sounds/flipcard.mp3");
 const win = new Audio("sounds/win.mp3");
 const lose = new Audio("sounds/lose.mp3");
 const bj = new Audio("sounds/blakjack.mp3");
-bj.volume = 0.6;
+bj.volume = 0.1;
 const but = new Audio("sounds/button.mp3");
 let puan = 0;
 let as = 0;
@@ -227,3 +227,4 @@ function cek()
    document.querySelector(".puan").innerHTML = `SENİN PUANIN:${puan}`;
 
 }
+
