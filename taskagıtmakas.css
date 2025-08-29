@@ -12,13 +12,10 @@ body{
 
 .button{
     border-radius: 100px;
-    background-color: gray;
-    font-family: arial,roboto;
-    font-weight: bold;
-    font-size: 20px;
-    transition: all 0.15s;
+    transition: opacity,background-color 0.15s;
     cursor: pointer;
     border: none;
+    position: relative;
 }
 
 .button:hover{
@@ -26,7 +23,7 @@ body{
 }
 
 .button:active{
-    background-color: rgb(155, 155, 155);
+    border: blue solid;
 }
 
 .texts{
@@ -34,19 +31,15 @@ body{
     grid-template-columns: 200px 200px 200px;
     grid-column-gap: 20px;
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 60px;
 }
-.oyuncu{
-    color: white;
-    margin: 0;
-}
-.bilgisayar{
-    color: white;
-    margin: 0;
-}
+.oyuncu,
+.bilgisayar,
 .kazanan{
     color: white;
     margin: 0;
+    position: relative;
+    vertical-align: middle;
 }
 
 .win{
@@ -56,13 +49,12 @@ body{
     color: white;
 }
 .tie{
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
 .scoretext{
     display: inline-block;
     width: 200px;
-    vertical-align: middle;
     margin-top: 40px;
 }
 
@@ -91,4 +83,29 @@ body{
 .reset:active{
     opacity: 0.9;
     background-color: rgb(4, 4, 152);
+}
+
+.tkmimg{
+    position: absolute;
+    width: 150px;
+    top: 0;
+    left: 0;
+    border-radius: 100px;
+}
+
+.secimimg{
+    width: 50px;
+    border-radius: 100px;
+    position: absolute;
+    vertical-align: middle;
+}
+
+.draw,
+.computer,
+.player{
+    background-color: rgb(46, 180, 180);
+    border-radius: 100px;
+    width: 50px;
+    position: absolute;
+    border: none;
 }

@@ -36,49 +36,35 @@ function oyun(secim)
 
     if(pcsecim == secim)
     {
-        kazanantext.innerHTML= `kazanan: berabere`;
+        kazanantext.innerHTML= `kazanan: <img class="draw" src="img/draw.png">`;
         tie++;
-    }
-
-    else if(pcsecim == "tas" && secim == "makas")
-    {
-        kazanantext.innerHTML= `kazanan: bilgisayar`;
-        lose++;
     }
 
     else if(pcsecim == "tas" && secim == "kagıt")
     {
-        kazanantext.innerHTML= `kazanan: oyuncu`;
+        kazanantext.innerHTML= `kazanan: <img class="player" src="img/player.png">`;
         win++;
-    }
-
-    else if(pcsecim == "kagıt" && secim == "tas")
-    {
-        kazanantext.innerHTML= `kazanan: bilgisayar`;
-        lose++;
     }
 
     else if(pcsecim == "kagıt" && secim == "makas")
     {
-        kazanantext.innerHTML= `kazanan: oyuncu`;
+        kazanantext.innerHTML= `kazanan: <img class="player" src="img/player.png">`;
         win++;
     }
 
     else if(pcsecim == "makas" && secim == "tas")
     {
-        kazanantext.innerHTML= `kazanan: oyuncu`;
+        kazanantext.innerHTML= `kazanan: <img class="player" src="img/player.png">`;
         win++;
     }
 
-    else if(pcsecim == "makas" && secim == "kagıt")
-    {
-        kazanantext.innerHTML= `kazanan: bilgisayar`;
+    else{
+        kazanantext.innerHTML= `kazanan: <img class="computer" src="img/computer.png">`;
         lose++;
     }
 
-
-    pctext.innerHTML = `bilgisayarın secimi: ${pcsecim}`;
-    oyuncutext.innerHTML = `seciminiz: ${secim}`;
+    pctext.innerHTML = `bilgisayarın secimi: <img class="secimimg" src="img/${pcsecim}.png">`;
+    oyuncutext.innerHTML = `senin secimin: <img class="secimimg" src="img/${secim}.png">`;
 
     wintext.innerHTML = `kazanc: ${win}`;
     losetext.innerHTML = `kaybedis: ${lose}`;
