@@ -1,13 +1,89 @@
 const cards = ["TS.svg","TH.svg","TD.svg","TC.svg","QS.svg","QH.svg","QD.svg","QC.svg","KS.svg","KH.svg","KD.svg","KC.svg","JS.svg","JH.svg","JD.svg","JC.svg","AS.svg","AH.svg","AD.svg","AC.svg","9S.svg","9H.svg","9D.svg","9C.svg","8S.svg","8H.svg","8D.svg","8C.svg","7S.svg","7H.svg","7D.svg","7C.svg","6S.svg","6H.svg","6D.svg","6C.svg","5S.svg","5H.svg","5D.svg","5C.svg","4S.svg","4H.svg","4D.svg","4C.svg","3S.svg","3H.svg","3D.svg","3C.svg","2S.svg","2H.svg","2D.svg","2C.svg"];
 let puan = 0;
 let as = 0;
-
+let clicked = false;
 function card()
+{
+    if(!clicked){
+        cek();
+        cek();
+        clicked=true;
+    }
+
+    else
+    {
+        cek();
+   }
+}
+
+function bitti()
+{
+    let pcpuan = Math.floor(Math.random() * (24 - 17) ) + 17;
+    if(pcpuan > 21)
+    {
+        let pcpuan = Math.floor(Math.random() * (24 - 17) ) + 17;
+        if(pcpuan > 21)
+        {
+            let pcpuan = Math.floor(Math.random() * (24 - 17) ) + 17;
+            if(pcpuan > 21)
+            {
+                let pcpuan = Math.floor(Math.random() * (24 - 17) ) + 17;
+            }
+        }
+    }
+
+    if(pcpuan > 21)
+    {
+        document.querySelector(".sonuc").innerHTML = "KAZANDINIZ";
+        document.querySelector(".sonuc2").innerHTML = "rakip battı...";
+        document.querySelector(".reset").remove();
+        document.querySelector(".cardsbutton").remove();
+        if(puan == 21)
+        {
+            document.querySelector(".sonuc").innerHTML = "KAZANDINIZ... BLACKJACK😎😎";
+        }
+    }
+
+    else if(pcpuan > puan)
+    {
+        document.querySelector(".sonuc").innerHTML = "KAYBETTİNİZ";
+        document.querySelector(".reset").remove();
+        document.querySelector(".cardsbutton").remove();
+    }
+
+    else if(pcpuan == puan){
+        document.querySelector(".sonuc").innerHTML = "BERABERE";
+        document.querySelector(".reset").remove();
+        document.querySelector(".cardsbutton").remove();
+    }
+
+    else if(pcpuan < puan)
+    {
+        document.querySelector(".sonuc").innerHTML = "KAZANDINIZ";
+        document.querySelector(".reset").remove();
+        document.querySelector(".cardsbutton").remove();
+        if(puan == 21)
+        {
+            document.querySelector(".sonuc").innerHTML = "KAZANDINIZ... BLACKJACK😎😎";
+        }
+    }
+
+    
+
+    document.querySelector(".pcpuan").innerHTML = `PC PUANI: ${pcpuan}`;
+}
+
+function reset()
+{
+    window.location.href = "bj.html";
+}
+
+function cek()
 {
    const img = document.createElement("img");
    const randomcard = cards[Math.floor(Math.random() * cards.length)];
    img.src = `poker/${randomcard}`;
-   img.width = 150;
+   img.width = 170;
    document.getElementById('cek').appendChild(img);
 
    if(randomcard[0] == "T" || randomcard[0] == "Q" || randomcard[0] == "J" || randomcard[0] == "K")
@@ -79,61 +155,4 @@ function card()
    }
 
    document.querySelector(".puan").innerHTML = `SENİN PUANIN:${puan}`;
-}
-
-function bitti()
-{
-    let pcpuan = Math.floor(Math.random() * (24 - 15) ) + 15;
-    if(pcpuan > 21)
-    {
-        let pcpuan = Math.floor(Math.random() * (24 - 15) ) + 15;
-        if(pcpuan > 21)
-        {
-            let pcpuan = Math.floor(Math.random() * (24 - 15) ) + 15;
-            if(pcpuan > 21)
-            {
-                let pcpuan = Math.floor(Math.random() * (24 - 15) ) + 15;
-            }
-        }
-    }
-
-    if(pcpuan > 21)
-    {
-        document.querySelector(".sonuc").innerHTML = "KAZANDINIZ";
-        document.querySelector(".reset").remove();
-        document.querySelector(".cardsbutton").remove();
-    }
-
-    else if(pcpuan > puan)
-    {
-        document.querySelector(".sonuc").innerHTML = "KAYBETTİNİZ";
-        document.querySelector(".reset").remove();
-        document.querySelector(".cardsbutton").remove();
-    }
-
-    else if(pcpuan == puan){
-        document.querySelector(".sonuc").innerHTML = "BERABERE";
-        document.querySelector(".reset").remove();
-        document.querySelector(".cardsbutton").remove();
-    }
-
-    else if(pcpuan < puan)
-    {
-        document.querySelector(".sonuc").innerHTML = "KAZANDINIZ";
-        document.querySelector(".reset").remove();
-        document.querySelector(".cardsbutton").remove();
-        if(puan == 21)
-        {
-            document.querySelector(".sonuc").innerHTML = "KAZANDINIZ... BLACKJACK😎😎";
-        }
-    }
-
-    
-
-    document.querySelector(".pcpuan").innerHTML = `PC PUANI: ${pcpuan}`;
-}
-
-function reset()
-{
-    window.location.href = "bj.html";
 }
