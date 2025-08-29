@@ -10,6 +10,12 @@ let clicked,getpara = false;
 let para =100;
 para = JSON.parse(localStorage.getItem("paras"));
 
+if(para== null)
+{
+    para=100;
+    localStorage.setItem("paras", JSON.stringify(para));
+}
+
 document.querySelector(".money").innerHTML = `para: $${para}`;
 
 
