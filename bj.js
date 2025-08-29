@@ -8,6 +8,7 @@ let puan = 0;
 let as = 0;
 let clicked,getpara = false;
 let para =100;
+let bahis = 0;
 para = JSON.parse(localStorage.getItem("paras"));
 
 if(para== null)
@@ -24,7 +25,7 @@ function card()
 {   
     if(!getpara)
     {
-        let bahis = Number(document.querySelector(".bahis").value)
+        bahis = Number(document.querySelector(".bahis").value)
         if(bahis > para)
         {
             document.querySelector(".uyarı").innerHTML = "bu kadar paranız yok";
@@ -38,7 +39,6 @@ function card()
         else{
             getpara = true;
             document.querySelector(".bahis").remove();
-              // 💡 burada gerçekten parasını düşür
             localStorage.setItem("paras", JSON.stringify(para));
             
             flipcard.play();
@@ -80,7 +80,7 @@ function bitti()
     if(pcpuan > 21)
     {
         para += bahis * 2;
-        document.querySelector(".money").innerHTML = `para: $${para+bahis*2}`;
+        document.querySelector(".money").innerHTML = `para: $${para}`;
         localStorage.setItem("paras",JSON.stringify(para));
         document.querySelector(".sonuc").innerHTML = "KAZANDINIZ";
         document.querySelector(".sonuc2").innerHTML = "rakip battı...";
@@ -107,7 +107,7 @@ function bitti()
 
     else if(pcpuan == puan){
         para += bahis;
-        document.querySelector(".money").innerHTML = `para: $${para+bahis}`;
+        document.querySelector(".money").innerHTML = `para: $${para}`;
         localStorage.setItem("paras",JSON.stringify(para));
         document.querySelector(".sonuc").innerHTML = "BERABERE";
         document.querySelector(".reset").remove();
@@ -118,7 +118,7 @@ function bitti()
     else if(pcpuan < puan)
     {
         para += bahis * 2;
-        document.querySelector(".money").innerHTML = `para: $${para+bahis*2}`;
+        document.querySelector(".money").innerHTML = `para: $${para}`;
         localStorage.setItem("paras",JSON.stringify(para));
         document.querySelector(".sonuc").innerHTML = "KAZANDINIZ";
         document.querySelector(".reset").remove();
