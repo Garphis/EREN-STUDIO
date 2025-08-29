@@ -71,6 +71,8 @@ img{
     width: 300px;
     vertical-align: top;
 }
+.uyarı,
+.money,
 .sonuc,
 .pcpuan,
 .puan{
@@ -79,9 +81,11 @@ img{
 }
 .puan{
     margin-top: 60px;
+    color: aqua;
 }
 .pcpuan{
 margin-bottom: 10px;
+color: aqua;
 }
 .sonuc2,
 .sonuc{
@@ -92,4 +96,17 @@ margin-bottom: 10px;
 .sonuc2{
     font-size: 20px;
     font-weight: bold;
+}
+
+.bahis{
+    width: 70px;
+    height: 20px;
+}
+
+.uyarı{
+    color: chocolate;
+}
+
+.money{
+    color: greenyellow;
 }
