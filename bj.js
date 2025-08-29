@@ -147,7 +147,7 @@ function cek()
 
    if(as == 0 && puan>21)
    {
-    alert(`patladın, toplanan puan:${puan}`);
+    
     as = 0;
     document.querySelector(".reset").remove();
     document.querySelector(".cardsbutton").remove();
