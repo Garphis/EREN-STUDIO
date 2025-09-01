@@ -12,7 +12,7 @@ let clicked = false,
     getpara = false,
     bcc = false,
     savemoney = false,
-    para =100,
+    para =250,
     bahis = 0,
     puan = 0,
     as = 0;
@@ -328,4 +328,5 @@ function buy(girdi)
         document.querySelector(".money2").innerHTML = `para: $${para}`;
         savemoney = true;
     }
+
 }
