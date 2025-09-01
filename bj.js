@@ -22,7 +22,7 @@ para = JSON.parse(localStorage.getItem("paras"));
 
 if(para== null)
 {
-    para=100;
+    para=250;
     localStorage.setItem("paras", JSON.stringify(para));
 }
 
@@ -330,3 +330,4 @@ function buy(girdi)
     }
 
 }
+
