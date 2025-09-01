@@ -3,8 +3,10 @@ const flipcard = new Audio("sounds/flipcard.mp3");
 const win = new Audio("sounds/win.mp3");
 const lose = new Audio("sounds/lose.mp3");
 const bj = new Audio("sounds/blakjack.mp3");
-bj.volume = 0.1;
 const but = new Audio("sounds/button.mp3");
+win.volume=0.8;
+bj.volume = 0.3;
+
 
 let clicked = false,
     getpara = false,
@@ -73,9 +75,6 @@ function card()
     else{
         cek();
     }
-
-    
-    
 }
 
 function bitti()
@@ -255,17 +254,19 @@ function cek()
 
 function shop()
 {
+    
     document.body.innerHTML +=`
     <div class="shoplist">
         <div class="markettitle">
-            <button onclick="closeshop()" class="closebutton">X</button>
+            <p class="money2 money">para: $100</p>
             <p class="marketname">MARKET</p>
+            <button onclick="closeshop()" class="closebutton">X</button>
         </div>
         <div class="shopelement">
             <div class="shopelementimgdiv"><img src="img/colorchange.png" class="shopelementimg"></div>
             <div class="n-and-d">
                 <div class="name">RENK DEĞİŞTİR</div>
-                <div class="description">($500) arka plan rengini değiştir</div>
+                <div class="description">($500) arka plan rengini havalı renklerle değiştirir</div>
             </div>
             <div class="shopbuttondiv"><button onclick="buy(1)" class="shopbutton"><img class="marketimg" src="img/market.png"></button></div>
         </div>
@@ -274,7 +275,7 @@ function shop()
             <div class="shopelementimgdiv"><img src="img/gift.png" class="shopelementimg"></div>
             <div class="n-and-d">
                 <div class="name">HEDİYE</div>
-                <div class="description">($500) sana özel bir hediye</div>
+                <div class="description">($500) sana özel rastgele bir hediye verir</div>
             </div>
             <div class="shopbuttondiv"><button onclick="buy(2)" class="shopbutton"><img class="marketimg" src="img/market.png"></button></div>
         </div>
@@ -289,6 +290,7 @@ function shop()
         </div>
         
     </div>`;
+    document.querySelector(".money2").innerHTML = `para: $${para}`;
 }
 
 function closeshop()
@@ -305,6 +307,7 @@ function buy(girdi)
         localStorage.setItem("lbcc",JSON.stringify(bcc));
         localStorage.setItem("paras",JSON.stringify(para));
         document.querySelector(".money").innerHTML = `para: $${para}`;
+        document.querySelector(".money2").innerHTML = `para: $${para}`;
         document.body.classList.add("body2");
     }
 
@@ -313,6 +316,7 @@ function buy(girdi)
         para-=500;
         localStorage.setItem("paras",JSON.stringify(para));
         document.querySelector(".money").innerHTML = `para: $${para}`;
+        document.querySelector(".money2").innerHTML = `para: $${para}`;
         document.body.innerHTML = '<video class="nggyu" src="vid/nevergonnagiveyouup.mp4" autoplay></video>';
     }
 
@@ -321,6 +325,7 @@ function buy(girdi)
         para-=1000;
         localStorage.setItem("paras",JSON.stringify(para));
         document.querySelector(".money").innerHTML = `para: $${para}`;
+        document.querySelector(".money2").innerHTML = `para: $${para}`;
         savemoney = true;
     }
 }
