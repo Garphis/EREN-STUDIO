@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html><head>
-<title>Blakjack</title>
+<title>Blackjack</title>
 <link rel="stylesheet" href="bj.css">
 
 </head><body>
     <button onclick="card()" class="cardsbutton"><img class="cards" src="poker/1B.svg"></button>
     <div class="buttons">
-    <button onclick="bitti()" class="reset">bitir</button>
-    <button onclick="reset()" class="bitti">tekrar oyna</button>
-    <p class="money">para: $100</p>
+    <button onclick="bitti()" class="reset"><img class="tikimg" src="img/tik.png"></button>
+    <button onclick="reset()" class="bitti"><img class="tryagainimg" src="img/tryagain.png"></button>
+    <button onclick="shop()" class="shop"><img class="shopimg" src="img/shop.webp"></button>
+    <p class="money">para: $100<span class="gelenpara"></span></p>
     </div>
 
     <div class="texts">
@@ -19,10 +20,11 @@
     <input class="bahis" placeholder="bahsi girin..">
     <p class="uyarı"></p>
     </div>
-    
 
+    
     <div id="cek"></div>
-    
-    
 
+
+    
+    
 <script src="bj.js"></script></body></html>

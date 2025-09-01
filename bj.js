@@ -3,13 +3,19 @@ const flipcard = new Audio("sounds/flipcard.mp3");
 const win = new Audio("sounds/win.mp3");
 const lose = new Audio("sounds/lose.mp3");
 const bj = new Audio("sounds/blakjack.mp3");
-bj.volume = 0.4;
+bj.volume = 0.1;
 const but = new Audio("sounds/button.mp3");
-let puan = 0;
-let as = 0;
-let clicked,getpara = false;
-let para =100;
-let bahis = 0;
+
+let clicked = false,
+    getpara = false,
+    bcc = false,
+    savemoney = false,
+    para =100,
+    bahis = 0,
+    puan = 0,
+    as = 0;
+
+    
 para = JSON.parse(localStorage.getItem("paras"));
 
 if(para== null)
@@ -20,7 +26,10 @@ if(para== null)
 
 document.querySelector(".money").innerHTML = `para: $${para}`;
 
-
+if(JSON.parse(localStorage.getItem("lbcc"))==true )
+{
+    document.body.classList.add("body2");
+}
 
 function card()
 {   
@@ -38,6 +47,7 @@ function card()
         }
 
         else{
+            document.querySelector(".shop").remove();
             getpara = true;
             document.querySelector(".bahis").remove();
             localStorage.setItem("paras", JSON.stringify(para));
@@ -73,10 +83,7 @@ function bitti()
     if(clicked)
     {
     let pcpuan = Math.floor(Math.random() * (24 - 17) ) + 17;
-    if(pcpuan > 21)
-    {
-        let pcpuan = Math.floor(Math.random() * (24 - 17) ) + 17;
-    }
+    
 
     if(pcpuan > 21)
     {
@@ -100,10 +107,19 @@ function bitti()
     else if(pcpuan > puan)
     {
         lose.play();
-        localStorage.setItem("paras",JSON.stringify(para));
         document.querySelector(".sonuc").innerHTML = "KAYBETTİNİZ";
         document.querySelector(".reset").remove();
         document.querySelector(".cardsbutton").remove();
+        if(savemoney)
+        {
+            para+=bahis/2;
+            localStorage.setItem("paras",JSON.stringify(para));
+        }
+
+        else{
+            localStorage.setItem("paras",JSON.stringify(para));
+        }
+         document.querySelector(".money").innerHTML = `para: $${para}`;
     }
 
     else if(pcpuan == puan){
@@ -221,11 +237,90 @@ function cek()
     document.querySelector(".reset").remove();
     document.querySelector(".cardsbutton").remove();
     document.querySelector(".sonuc").innerHTML = "KAYBETTİNİZ";
-    localStorage.setItem("paras",JSON.stringify(para));
+    
+        if(savemoney)
+        {
+            para+=bahis/2;
+            localStorage.setItem("paras",JSON.stringify(para));
+        }
+
+        else{
+            localStorage.setItem("paras",JSON.stringify(para));
+        }
+        document.querySelector(".money").innerHTML = `para: $${para}`;
    }
 
    document.querySelector(".puan").innerHTML = `SENİN PUANIN:${puan}`;
-
 }
 
+function shop()
+{
+    document.body.innerHTML +=`
+    <div class="shoplist">
+        <div class="markettitle">
+            <button onclick="closeshop()" class="closebutton">X</button>
+            <p class="marketname">MARKET</p>
+        </div>
+        <div class="shopelement">
+            <div class="shopelementimgdiv"><img src="img/colorchange.png" class="shopelementimg"></div>
+            <div class="n-and-d">
+                <div class="name">RENK DEĞİŞTİR</div>
+                <div class="description">($500) arka plan rengini değiştir</div>
+            </div>
+            <div class="shopbuttondiv"><button onclick="buy(1)" class="shopbutton"><img class="marketimg" src="img/market.png"></button></div>
+        </div>
 
+        <div class="shopelement">
+            <div class="shopelementimgdiv"><img src="img/gift.png" class="shopelementimg"></div>
+            <div class="n-and-d">
+                <div class="name">HEDİYE</div>
+                <div class="description">($500) sana özel bir hediye</div>
+            </div>
+            <div class="shopbuttondiv"><button onclick="buy(2)" class="shopbutton"><img class="marketimg" src="img/market.png"></button></div>
+        </div>
+
+        <div class="shopelement">
+            <div class="shopelementimgdiv"><img src="img/moneyback.png" class="shopelementimg"></div>
+            <div class="n-and-d">
+                <div class="name">HEDİYE</div>
+                <div class="description">($1000) bu el kaybedersen, kaybettiğin paranın %50 sini geri verir</div>
+            </div>
+            <div class="shopbuttondiv"><button onclick="buy(3)" class="shopbutton"><img class="marketimg" src="img/market.png"></button></div>
+        </div>
+        
+    </div>`;
+}
+
+function closeshop()
+{
+    document.querySelector(".shoplist").remove();
+}
+
+function buy(girdi)
+{
+    if(girdi==1 && bcc == false && para>=500)
+    {
+        bcc = true;
+        para-=500;
+        localStorage.setItem("lbcc",JSON.stringify(bcc));
+        localStorage.setItem("paras",JSON.stringify(para));
+        document.querySelector(".money").innerHTML = `para: $${para}`;
+        document.body.classList.add("body2");
+    }
+
+    else if(girdi ==2 && para>=500)
+    {
+        para-=500;
+        localStorage.setItem("paras",JSON.stringify(para));
+        document.querySelector(".money").innerHTML = `para: $${para}`;
+        document.body.innerHTML = '<video class="nggyu" src="vid/nevergonnagiveyouup.mp4" autoplay></video>';
+    }
+
+    else if(girdi == 3 && !savemoney && para>=1000)
+    {
+        para-=1000;
+        localStorage.setItem("paras",JSON.stringify(para));
+        document.querySelector(".money").innerHTML = `para: $${para}`;
+        savemoney = true;
+    }
+}
