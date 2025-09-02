@@ -170,7 +170,7 @@ color: aqua;
     margin-top: 5px;
     width: 70px;
     height: 70px;
-    background-color: brown;
+    background-color: rgb(71, 42, 165);
     border: none;
     border-radius: 20px;
     position: relative;
@@ -180,7 +180,7 @@ color: aqua;
 
 .shopbutton:active
 {
-    background-color: rgb(101, 25, 25);
+    background-color: rgba(48, 27, 116, 0.718);
 }
 
 .name{

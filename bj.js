@@ -13,22 +13,29 @@ let clicked = false,
     bcc = false,
     savemoney = false,
     pcfirstcard= true,
-    para =100,
     bahis = 0,
     puan = 0,
     pcpuan = 0,
     pcas = 0,
     as = 0,
-    hiddencardreal = null;
+    hiddencardreal = null,
+    showcardbuyed;
 
     
-para = JSON.parse(localStorage.getItem("paras"));
+    para = JSON.parse(localStorage.getItem("paras"));
+    showcardprice = JSON.parse(localStorage.getItem("price"));
 
-if(para== null)
-{
+    if(para== null)
+    {
     para=100;
     localStorage.setItem("paras", JSON.stringify(para));
-}
+    }
+
+    if(showcardprice == null)
+    {
+        showcardprice=5000;
+        localStorage.setItem("price", JSON.stringify(showcardprice));
+    }
 
 document.querySelector(".money").innerHTML = `para: $${para}`;
 
@@ -90,7 +97,11 @@ function bitti()
 {
     if(clicked)
     {
-        document.getElementById("hiddencard").src = `poker/${hiddencardreal}`;
+        if(showcardbuyed==false)
+        {
+            document.getElementById("hiddencard").src = `poker/${hiddencardreal}`;
+        }
+        
 
         while(pcpuan<17)
         {
@@ -241,7 +252,7 @@ function shop()
             <p class="marketname">MARKET</p>
             <button onclick="closeshop()" class="closebutton">X</button>
         </div>
-        <div class="shopelement">
+        <div class="shopelement" style="background: #1c2cba;background: linear-gradient(141deg,rgba(28, 44, 186, 1) 0%, rgba(107, 45, 173, 1) 29%, rgba(40, 156, 90, 1) 60%, rgba(141, 205, 114, 1) 83%, rgba(237, 221, 83, 1) 100%);">
             <div class="shopelementimgdiv"><img src="img/colorchange.png" class="shopelementimg"></div>
             <div class="n-and-d">
                 <div class="name">RENK DEĞİŞTİR</div>
@@ -250,7 +261,7 @@ function shop()
             <div class="shopbuttondiv"><button onclick="buy(1)" class="shopbutton"><img class="marketimg" src="img/market.png"></button></div>
         </div>
 
-        <div class="shopelement">
+        <div class="shopelement" style="background-color:red">
             <div class="shopelementimgdiv"><img src="img/gift.png" class="shopelementimg"></div>
             <div class="n-and-d">
                 <div class="name">HEDİYE</div>
@@ -259,13 +270,22 @@ function shop()
             <div class="shopbuttondiv"><button onclick="buy(2)" class="shopbutton"><img class="marketimg" src="img/market.png"></button></div>
         </div>
 
-        <div class="shopelement">
+        <div class="shopelement" style="background-color:green">
             <div class="shopelementimgdiv"><img src="img/moneyback.png" class="shopelementimg"></div>
             <div class="n-and-d">
-                <div class="name">HEDİYE</div>
+                <div class="name">PARAKURTARAN</div>
                 <div class="description">($1000) bu el kaybedersen, kaybettiğin paranın %50 sini geri verir</div>
             </div>
             <div class="shopbuttondiv"><button onclick="buy(3)" class="shopbutton"><img class="marketimg" src="img/market.png"></button></div>
+        </div>
+
+        <div class="shopelement" style="background-color:white">
+            <div class="shopelementimgdiv"><img style="margin-top:4px" src="img/openingcard.jpg" class="shopelementimg"></div>
+            <div class="n-and-d">
+                <div class="name">PUS*Y GAMER</div>
+                <div class="description buyed">($${showcardprice}) rakibin 2. kartınıda görürsün, aldıkça fiyatı artar</div>
+            </div>
+            <div class="shopbuttondiv"><button onclick="buy(4)" class="shopbutton"><img class="marketimg" src="img/market.png"></button></div>
         </div>
         
     </div>`;
@@ -307,6 +327,18 @@ function buy(girdi)
         document.querySelector(".money2").innerHTML = `para: $${para}`;
         savemoney = true;
     }
+
+    else if(girdi == 4 &&  para>=showcardprice)
+    {
+        para-=showcardprice;
+        showcardprice*=2;
+        showcardbuyed = true;
+        localStorage.setItem("paras",JSON.stringify(para));
+        document.querySelector(".buyed").innerHTML = `($${showcardprice}) rakibin 2. kartınıda görürsün, aldıkça fiyatı artar`;
+        document.querySelector(".money").innerHTML = `para: $${para}`;
+        document.querySelector(".money2").innerHTML = `para: $${para}`;
+        localStorage.setItem("price",JSON.stringify(showcardprice));
+    }
 }
 
 function enemypuan(enemycard)
@@ -318,10 +350,17 @@ function enemypuan(enemycard)
         imgenemy.src = `poker/${enemycardss}`;
         pcfirstcard = false;
    }
-   else {
+   else{
+        if(showcardbuyed == false)
+        {
         imgenemy.src = `poker/2B.svg`;
         imgenemy.id = "hiddencard";
         hiddencardreal = enemycardss;
+        }
+        else{
+            imgenemy.src = `poker/${enemycardss}`;
+            pcfirstcard = false;
+        }
     }
    
    imgenemy.classList.add("enemycardspos");
