@@ -18,7 +18,8 @@ let clicked = false,
     puan = 0,
     pcpuan = 0,
     pcas = 0,
-    as = 0;
+    as = 0,
+    hiddencardreal = null;
 
     
 para = JSON.parse(localStorage.getItem("paras"));
@@ -55,11 +56,8 @@ function card()
         }
 
         else{
-            
-            while(pcpuan<17)
-            {
-                enemypuan(enemycards);
-            }
+            enemypuan(enemycards);
+            enemypuan(enemycards);
             document.querySelector(".shop").remove();
             getpara = true;
             document.querySelector(".bahis").remove();
@@ -92,17 +90,25 @@ function bitti()
 {
     if(clicked)
     {
-    
+        document.getElementById("hiddencard").src = `poker/${hiddencardreal}`;
 
-    if(pcpuan > 21)
-    {
-        para += bahis * 2;
-        document.querySelector(".money").innerHTML = `para: $${para}`;
-        localStorage.setItem("paras",JSON.stringify(para));
-        document.querySelector(".sonuc").innerHTML = "KAZANDINIZ";
-        document.querySelector(".sonuc2").innerHTML = "rakip battı...";
-        document.querySelector(".reset").remove();
-        document.querySelector(".cardsbutton").remove();
+        while(pcpuan<17)
+        {
+            pcfirstcard= true;
+            enemypuan(enemycards);
+        }
+
+        if(pcpuan > 21)
+        {
+        
+
+            para += bahis * 2;
+            document.querySelector(".money").innerHTML = `para: $${para}`;
+            localStorage.setItem("paras",JSON.stringify(para));
+            document.querySelector(".sonuc").innerHTML = "KAZANDINIZ";
+            document.querySelector(".sonuc2").innerHTML = "rakip battı...";
+            document.querySelector(".reset").remove();
+            document.querySelector(".cardsbutton").remove();
         if(puan == 21)
         {
             document.querySelector(".sonuc").innerHTML = "KAZANDINIZ... BLACKJACK😎😎";
@@ -111,14 +117,14 @@ function bitti()
         else{
             win.play();
         }
-    }
+        }
 
-    else if(pcpuan > puan)
-    {
-        lose.play();
-        document.querySelector(".sonuc").innerHTML = "KAYBETTİNİZ";
-        document.querySelector(".reset").remove();
-        document.querySelector(".cardsbutton").remove();
+        else if(pcpuan > puan)
+        {
+            lose.play();
+            document.querySelector(".sonuc").innerHTML = "KAYBETTİNİZ";
+            document.querySelector(".reset").remove();
+            document.querySelector(".cardsbutton").remove();
         if(savemoney)
         {
             para+=bahis/2;
@@ -128,27 +134,27 @@ function bitti()
         else{
             localStorage.setItem("paras",JSON.stringify(para));
         }
-         document.querySelector(".money").innerHTML = `para: $${para}`;
-    }
+            document.querySelector(".money").innerHTML = `para: $${para}`;
+        }
 
-    else if(pcpuan == puan){
-        para += bahis;
-        document.querySelector(".money").innerHTML = `para: $${para}`;
-        localStorage.setItem("paras",JSON.stringify(para));
-        document.querySelector(".sonuc").innerHTML = "BERABERE";
-        document.querySelector(".reset").remove();
-        document.querySelector(".cardsbutton").remove();
-        win.play();
-    }
+        else if(pcpuan == puan){
+            para += bahis;
+            document.querySelector(".money").innerHTML = `para: $${para}`;
+            localStorage.setItem("paras",JSON.stringify(para));
+            document.querySelector(".sonuc").innerHTML = "BERABERE";
+            document.querySelector(".reset").remove();
+            document.querySelector(".cardsbutton").remove();
+            win.play();
+        }
 
-    else if(pcpuan < puan)
-    {
-        para += bahis * 2;
-        document.querySelector(".money").innerHTML = `para: $${para}`;
-        localStorage.setItem("paras",JSON.stringify(para));
-        document.querySelector(".sonuc").innerHTML = "KAZANDINIZ";
-        document.querySelector(".reset").remove();
-        document.querySelector(".cardsbutton").remove();
+        else if(pcpuan < puan)
+        {
+            para += bahis * 2;
+            document.querySelector(".money").innerHTML = `para: $${para}`;
+            localStorage.setItem("paras",JSON.stringify(para));
+            document.querySelector(".sonuc").innerHTML = "KAZANDINIZ";
+            document.querySelector(".reset").remove();
+            document.querySelector(".cardsbutton").remove();
         if(puan == 21)
         {
             bj.play();
@@ -158,8 +164,8 @@ function bitti()
         else{
             win.play();
         }
-    }
-    document.querySelector(".pcpuan").innerHTML = `PC PUANI: ${pcpuan}`;
+        }
+            document.querySelector(".pcpuan").innerHTML = `PC PUANI: ${pcpuan}`;
     }
 }
 
@@ -305,19 +311,24 @@ function buy(girdi)
 
 function enemypuan(enemycard)
 {
+
    const imgenemy = document.createElement("img");
    const enemycardss = enemycard[Math.floor(Math.random() * enemycard.length)];
    if(pcfirstcard){
-    imgenemy.src = `poker/${enemycardss}`;
-    pcfirstcard = false;
+        imgenemy.src = `poker/${enemycardss}`;
+        pcfirstcard = false;
    }
    else {
-    imgenemy.src = `poker/2B.svg`;
+        imgenemy.src = `poker/2B.svg`;
+        imgenemy.id = "hiddencard";
+        hiddencardreal = enemycardss;
     }
    
    imgenemy.classList.add("enemycardspos");
    imgenemy.width = 170;
    document.getElementById('enemyarea').appendChild(imgenemy);
+
+   
 
    if(enemycardss[0] == "T" || enemycardss[0] == "Q" || enemycardss[0] == "J" || enemycardss[0] == "K")
    {
