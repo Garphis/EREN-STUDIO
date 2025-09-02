@@ -19,7 +19,7 @@ let clicked = false,
     pcas = 0,
     as = 0,
     hiddencardreal = null,
-    showcardbuyed;
+    showcardbuyed = false;
 
     
     para = JSON.parse(localStorage.getItem("paras"));
@@ -120,14 +120,15 @@ function bitti()
             document.querySelector(".sonuc2").innerHTML = "rakip battı...";
             document.querySelector(".reset").remove();
             document.querySelector(".cardsbutton").remove();
-        if(puan == 21)
-        {
-            document.querySelector(".sonuc").innerHTML = "KAZANDINIZ... BLACKJACK😎😎";
-            bj.play();
-        }
-        else{
-            win.play();
-        }
+            if(puan == 21)
+            {
+                document.querySelector(".sonuc").innerHTML = "KAZANDINIZ... BLACKJACK😎😎";
+                bj.play();
+            }
+            else{
+                win.play();
+            }
+            document.querySelector(".gelenpara").innerHTML = `+${bahis}`;
         }
 
         else if(pcpuan > puan)
@@ -136,26 +137,33 @@ function bitti()
             document.querySelector(".sonuc").innerHTML = "KAYBETTİNİZ";
             document.querySelector(".reset").remove();
             document.querySelector(".cardsbutton").remove();
-        if(savemoney)
-        {
-            para+=bahis/2;
-            localStorage.setItem("paras",JSON.stringify(para));
-        }
+            document.querySelector(".gelenpara").classList.add("gelenpara-");
+            if(savemoney)
+            {
+                para+=bahis/2;
+                localStorage.setItem("paras",JSON.stringify(para));
+                document.querySelector(".gelenpara").innerHTML = `${bahis/2}`;
+            }
 
-        else{
-            localStorage.setItem("paras",JSON.stringify(para));
-        }
+            else
+            {
+                localStorage.setItem("paras",JSON.stringify(para));
+                document.querySelector(".gelenpara").innerHTML = `-${bahis}`;
+            }
             document.querySelector(".money").innerHTML = `para: $${para}`;
         }
 
-        else if(pcpuan == puan){
+        else if(pcpuan == puan)
+        {
             para += bahis;
             document.querySelector(".money").innerHTML = `para: $${para}`;
             localStorage.setItem("paras",JSON.stringify(para));
             document.querySelector(".sonuc").innerHTML = "BERABERE";
             document.querySelector(".reset").remove();
             document.querySelector(".cardsbutton").remove();
+            document.querySelector(".gelenpara").classList.add("gelenpara0");
             win.play();
+            document.querySelector(".gelenpara").innerHTML = `+0`;
         }
 
         else if(pcpuan < puan)
@@ -166,17 +174,20 @@ function bitti()
             document.querySelector(".sonuc").innerHTML = "KAZANDINIZ";
             document.querySelector(".reset").remove();
             document.querySelector(".cardsbutton").remove();
-        if(puan == 21)
-        {
-            bj.play();
-            document.querySelector(".sonuc").innerHTML = "KAZANDINIZ... BLACKJACK😎😎";
-        }
+            if(puan == 21)
+            {
+                bj.play();
+                document.querySelector(".sonuc").innerHTML = "KAZANDINIZ... BLACKJACK😎😎";
+            }
 
-        else{
-            win.play();
+            else
+            {
+                win.play();
+            }
         }
-        }
-            document.querySelector(".pcpuan").innerHTML = `PC PUANI: ${pcpuan}`;
+            
+        document.querySelector(".gelenpara").innerHTML = `+${bahis}`;
+        document.querySelector(".pcpuan").innerHTML = `PC PUANI: ${pcpuan}`;
     }
 }
 
@@ -226,16 +237,20 @@ function cek(gelen)
     document.querySelector(".reset").remove();
     document.querySelector(".cardsbutton").remove();
     document.querySelector(".sonuc").innerHTML = "KAYBETTİNİZ";
+    document.querySelector(".gelenpara").classList.add("gelenpara-");
     
         if(savemoney)
-        {
-            para+=bahis/2;
-            localStorage.setItem("paras",JSON.stringify(para));
-        }
+            {
+                para+=bahis/2;
+                localStorage.setItem("paras",JSON.stringify(para));
+                document.querySelector(".gelenpara").innerHTML = `${bahis/2}`;
+            }
 
-        else{
-            localStorage.setItem("paras",JSON.stringify(para));
-        }
+            else
+            {
+                localStorage.setItem("paras",JSON.stringify(para));
+                document.querySelector(".gelenpara").innerHTML = `-${bahis}`;
+            }
         document.querySelector(".money").innerHTML = `para: $${para}`;
    }
 

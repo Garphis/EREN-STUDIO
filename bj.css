@@ -118,11 +118,22 @@ color: aqua;
 .uyarı{
     color: chocolate;
 }
+.gelenpara,
 .money2,
 .money{
     color: greenyellow;
     margin-left: 10px;
     width: 200px;
+}
+
+.gelenpara-
+{
+    color: red;
+}
+
+.gelenpara0
+{
+    color:gray;
 }
 .marketimg,
 .shopimg,
