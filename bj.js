@@ -142,7 +142,7 @@ function bitti()
             {
                 para+=bahis/2;
                 localStorage.setItem("paras",JSON.stringify(para));
-                document.querySelector(".gelenpara").innerHTML = `${bahis/2}`;
+                document.querySelector(".gelenpara").innerHTML = `-${bahis/2} (yarısı korundu)`;
             }
 
             else
@@ -243,7 +243,7 @@ function cek(gelen)
             {
                 para+=bahis/2;
                 localStorage.setItem("paras",JSON.stringify(para));
-                document.querySelector(".gelenpara").innerHTML = `${bahis/2}`;
+                document.querySelector(".gelenpara").innerHTML = `-${bahis/2} (yarısı korundu)`;
             }
 
             else
@@ -407,4 +407,5 @@ function enemypuan(enemycard)
          pcas--;
       }
    }
+
 }
