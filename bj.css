@@ -241,6 +241,7 @@ color: aqua;
 {
     position: fixed;
     object-fit: cover;
+    volume: 0.4;
 }
 
 @keyframes color-wave {
@@ -292,4 +293,5 @@ color: aqua;
 .enemycardspos{
     width: 70px;
     
+
 }
