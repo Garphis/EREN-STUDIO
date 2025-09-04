@@ -1,0 +1,10 @@
+body{
+    margin: 0;
+}
+
+.tablecard{
+    background-color: rgba(128, 128, 128, 0.477);
+    width: 100px;
+    height: 100px;
+    margin-top: 20px;
+}

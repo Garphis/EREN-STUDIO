@@ -91,3 +91,13 @@ function bj()
 {
     window.location.href = "bj.html";
 }
+
+function poker()
+{
+    const downloadLink = document.createElement('a');
+    downloadLink.href = "img/";
+    downloadLink.download = 'pokertable.jpeg';
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    downloadLink.remove();
+}
