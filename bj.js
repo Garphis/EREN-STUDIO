@@ -297,7 +297,7 @@ function shop()
         <div class="shopelement" style="background-color:white">
             <div class="shopelementimgdiv"><img style="margin-top:4px" src="img/openingcard.jpg" class="shopelementimg"></div>
             <div class="n-and-d">
-                <div class="name">PUS*Y GAMER</div>
+                <div class="name">BABY GAMER</div>
                 <div class="description buyed">($${showcardprice}) rakibin 2. kartınıda görürsün, aldıkça fiyatı artar</div>
             </div>
             <div class="shopbuttondiv"><button onclick="buy(4)" class="shopbutton"><img class="marketimg" src="img/market.png"></button></div>
@@ -409,3 +409,4 @@ function enemypuan(enemycard)
    }
 
 }
+
