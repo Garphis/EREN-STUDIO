@@ -47,6 +47,14 @@ if(JSON.parse(localStorage.getItem("lbcc"))==true )
     document.body.classList.add("body2");
 }
 
+document.body.addEventListener("keydown", (event) => {
+    if(event.key =='Enter')
+    {
+        card();
+    }
+});
+
+
 function card()
 {   
     if(!getpara)
@@ -257,6 +265,16 @@ function cek(gelen)
    document.querySelector(".puan").innerHTML = `SENİN PUANIN:${puan}`;
 }
 
+function howtoplay()
+{
+    document.body.innerHTML += `<div class="shoplist"><div class="markettitle">
+            <p class="marketname">NASIL OYNANIR?</p>
+            <button onclick="closeshop()" class="closebutton">X</button>
+        </div>
+        <p class="gamedec">bahsi girdikten sonra "enter" tuşuyla ya da farenin sol tuşuyla kart çekebilirsiniz. Oyunun nasıl oynancağını bilmiyorsanız <a target="_blank" style="color:aqua" href="https://www.wikihow.com/Play-Blackjack">tıklayınız</a> markette alabileceğiniz güçlenidrmeler ve görünümler mevcuttur. $0 kalırsa yapabileceğiniz birşey henüz yok ☺ oturup allaha dua edin.</p>
+        </div>`;
+}
+
 function shop()
 {
     
@@ -409,4 +427,3 @@ function enemypuan(enemycard)
    }
 
 }
-
